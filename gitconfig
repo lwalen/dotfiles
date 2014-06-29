@@ -1,0 +1,16 @@
+[user]
+	name = Lars Walen
+	email = lars@walen.me
+[core]
+	autocrlf = input
+[push]
+	default = simple
+[color]
+	ui = true
+[alias]
+	st = status
+	co = checkout
+	cm = commit -au -m 
+	p = !git pull && git push
+	b = !/home/lars/other/scripts/git-b
+	l = !git log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | head -10 && echo
