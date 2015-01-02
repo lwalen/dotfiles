@@ -6,9 +6,7 @@
 [[ $- != *i* ]] && return
 
 # enable colors file
-if [ -f /etc/bash/colors ]; then
-	. /etc/bash/colors
-fi
+[ -f ~/.bash_colors ] && . ~/.bash_colors
 
 # set prompt
 if [ `whoami` == "root" ]; then
@@ -44,8 +42,10 @@ export HISTIGNORE="&:exit"
 # use vim for editor
 export EDITOR=vim
 
+# path
+export PATH="$HOME/.rbenv/bin:$HOME/.bin:$PATH"
+
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # start in home directory

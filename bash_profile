@@ -1,0 +1,2 @@
+# Just source bashrc
+. ~/.bashrc

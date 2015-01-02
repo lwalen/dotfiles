@@ -3,11 +3,12 @@
 # bash convenience and coloring
 if [ -x /usr/bin/dircolors ]; then
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	alias ls='ls -pv --color=auto'
+
 fi
 
-alias ll='ls -alvpF'
-alias la='ls -Avp'
+alias ls='ls -pvG'
+alias ll='ls -alvpFG'
+alias la='ls -AvpG'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
