@@ -9,6 +9,10 @@ fi
 alias ls='ls -pvG'
 alias ll='ls -alvpFG'
 alias la='ls -AvpG'
+#alias ll='ls -lvh'
+#alias la='ls -Av'
+#alias lla='ls -lvha'
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'

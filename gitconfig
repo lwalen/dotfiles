@@ -1,5 +1,5 @@
 [user]
-	name = Lars Walen
+	name  = Lars Walen
 	email = lars@walen.me
 [core]
 	autocrlf = input
@@ -10,6 +10,7 @@
 [alias]
 	st = status
 	co = checkout
+   cb = checkout -b
 	d = diff
 	dc = diff --cached
 
