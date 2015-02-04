@@ -48,6 +48,14 @@ export PATH="$HOME/.rbenv/bin:$HOME/.bin:$PATH"
 # rbenv
 eval "$(rbenv init -)"
 
-# start in home directory
-cd
+# I hate typing 'bundle exec'
+[ -f ~/.bundler-exec.sh ] && source ~/.bundler-exec.sh
+
+# if START_DIR environment variable is set, start there
+# else start in home directory
+if [ -n "$START_DIR" ]; then
+	cd "$START_DIR"
+else
+	cd
+fi
 

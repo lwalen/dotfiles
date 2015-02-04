@@ -6,9 +6,9 @@ if [ -x /usr/bin/dircolors ]; then
 
 fi
 
-alias ls='ls -pvG'
-alias ll='ls -alvpFG'
-alias la='ls -AvpG'
+alias ls='ls -pvG --color'
+alias ll='ls -alvpFG --color'
+alias la='ls -AvpG --color'
 #alias ll='ls -lvh'
 #alias la='ls -Av'
 #alias lla='ls -lvha'
@@ -59,5 +59,5 @@ perm () {
 # start SketchUp
 sketchup () {
 	export WINEPREFIX="${HOME}/.sketchup"
-	wine .sketchup/drive_c/Program\ Files/SketchUp/SketchUp\ 2013/SketchUp.exe	
+	wine .sketchup/drive_c/Program\ Files/SketchUp/SketchUp\ 2015/SketchUp.exe
 }
