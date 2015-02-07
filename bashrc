@@ -34,7 +34,7 @@ shopt -s checkwinsize
 # enable other completions
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
-export LC_ALL=C
+#export LC_ALL=C
 
 # ignore 'exit' in bash history
 export HISTIGNORE="&:exit"
