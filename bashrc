@@ -34,8 +34,8 @@ shopt -s checkwinsize
 # enable aliases file
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
-# enable other completions
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+# enable git completion
+[ -f ~/.git-completion.bash ] && . ~/.git-completion.bash
 
 #export LC_ALL=C
 
