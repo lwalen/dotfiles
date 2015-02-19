@@ -21,9 +21,13 @@ alias less='less -R' # show colors
 alias sqlite="sqlite3 -header -column" # nicer formatting
 alias lzip="unzip -l" # show contents of .zip
 
+alias serve-this="python2 -m SimpleHTTPServer"
+alias serve="python2 -m SimpleHTTPServer"
+
 # scripts
 alias dump="/home/lars/other/scripts/dump.sh"
 alias episode-namer="/home/lars/other/scripts/name_episodes.rb"
+alias list-episodes="/home/lars/other/scripts/list_episodes.rb"
 alias flac2mp3="/home/lars/other/scripts/flac_to_mp3.sh"
 
 # 

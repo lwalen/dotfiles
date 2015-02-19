@@ -59,7 +59,7 @@ rspec
 ruby
 sass
 sass-convert
-serve
+#serve
 shotgun
 spec
 spork
@@ -73,8 +73,10 @@ unicorn
 unicorn_rails
 }"
 
+pattern="^[^#]"
+
 for CMD in $BUNDLED_COMMANDS; do
-    if [[ $CMD != "bundle" && $CMD != "gem" ]]; then
+    if [[ $CMD != "bundle" && $CMD != "gem" && $CMD =~ $pattern ]]; then
         alias $CMD="run-with-bundler $CMD"
     fi
 done

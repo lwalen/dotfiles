@@ -8,13 +8,16 @@
 # enable colors file
 [ -f ~/.bash_colors ] && . ~/.bash_colors
 
+# show git branch in prompt
+[ -f ~/.git-prompt.sh ] && . ~/.git-prompt.sh
+
 # set prompt
 if [ `whoami` == "root" ]; then
 	color="${bred}"
 else
 	color="${blue}"
 fi
-PS1="${color}[\u@\h \W]\$${color_off} "
+PS1="${color}[\u@\h \W${green}\$(__git_ps1)${color}]\$${color_off} "
 
 # set prompt command
 #case $TERM in
