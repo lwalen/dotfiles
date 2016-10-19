@@ -2,25 +2,50 @@
 	name  = Lars Walen
 	email = lars@walen.me
 [core]
-	autocrlf = input
+	#autocrlf = input
+	excludesfile = ~/.gitignore_global
+	ignorecase = false
+	whitespace = cr-at-eol,-space-before-tab
+[init]
+	templatedir = ~/.git_template
 [push]
 	default = current
 [color]
 	ui = true
 [alias]
-	st = status
-	co = checkout
-   cb = checkout -b
-	d = diff
-	dc = diff --cached
+	st   = status
+	co   = checkout
+	cb   = "!f() { git checkout -b $1 master; }; f"
+	a    = add
+	aa   = add --all
+	c    = commit -u -m
+	ca   = commit --amend -n
+	d    = diff
+	dc   = diff --cached
+	dw   = diff --color-words
+	df   = diff --name-only
+	f    = fetch
+	tags = tag -ln
+	su   = submodule update
+	rpo  = remote prune origin
+	mm   = merge origin/master
 
-	br = branch
-	bra = branch -a
+	undo    = reset --soft HEAD~1
+	unstage = reset HEAD
+
+	ahead = !git log --pretty=oneline --abbrev-commit origin.. | wc -l | gsed -e 's/^[[:space:]]*//'
+
+	ri = !git rebase -i HEAD~`git ahead`
+
+	br   = branch
+	bra  = branch -a
 	bram = branch -a --merged
 	brau = branch -a --no-merged
+	brnu = !git for-each-ref --format='%(refname:short) %(upstream)' refs/heads | awk '$2 !~/^refs\\/remotes/'
 
-	cm = commit -au -m 
-
+	dm = !git branch --merged | grep -v \"*\" | grep -v master | grep -v release | xargs -n 1 git branch -d
 	p = !git pull && git push
 	b = !/home/lars/other/scripts/git-b
 	l = !git log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | head -10 && echo
+	ll = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lup = !git log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | head -`git ahead` && echo

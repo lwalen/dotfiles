@@ -6,13 +6,14 @@ if [ -x /usr/bin/dircolors ]; then
 
 fi
 
-alias ls='ls -pvG --color'
-alias ll='ls -alvpFG --color'
-alias la='ls -AvpG --color'
+alias ls='ls -pG'
+alias ll='ls -alpFG'
+alias la='ls -ApG'
 #alias ll='ls -lvh'
 #alias la='ls -Av'
 #alias lla='ls -lvha'
 
+alias diff='diff -W $(tput cols)'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -20,9 +21,9 @@ alias c='clear'
 alias less='less -R' # show colors
 alias sqlite="sqlite3 -header -column" # nicer formatting
 alias lzip="unzip -l" # show contents of .zip
+alias rmeof="perl -pi -e 'chomp if eof'"
 
-alias serve-this="python2 -m SimpleHTTPServer"
-alias serve="python2 -m SimpleHTTPServer"
+alias serve="python -m SimpleHTTPServer 4000"
 
 # scripts
 alias dump="/home/lars/other/scripts/dump.sh"
@@ -30,8 +31,29 @@ alias episode-namer="/home/lars/other/scripts/name_episodes.rb"
 alias list-episodes="/home/lars/other/scripts/list_episodes.rb"
 alias flac2mp3="/home/lars/other/scripts/flac_to_mp3.sh"
 
-# 
-function mig() { 
+function gorun() {
+	go install -v ./... && ~/go/bin/${PWD##*/} $@
+}
+
+function gocover() {
+	gotestcover -coverprofile cover.out ./... && go tool cover -html=cover.out
+	rm cover.out 2> /dev/null
+}
+
+function ez_grep() {
+	grep -rsI "$1" ~/code/ez_grep | sed -e 's|/Users/lars/code/||g' 2> /dev/null
+}
+
+function b64() {
+	echo "$1" | base64 -D
+}
+
+function b64_url() {
+	echo "$1" | base64 -D | sed 's/&amp;/\&/g'
+}
+
+#
+function mig() {
 	if [ -f db/migrate/ ]; then
 		$EDITOR db/migrate/`ls -t db/migrate/ | head -1`
 	else
@@ -41,10 +63,12 @@ function mig() {
 
 function pps() { ps aux | grep "$@" | grep -v 'grep'; }
 
-# recursively replace in files from current directory
+# recursively replace in directory
 rr () {
-	echo "replacing \"$1\" with \"$2\""
-	find . ! -path '*/\.*' -type f -print0 | xargs -0 sed -i "s|$1|$2|g"
+	dest=${3:-.}
+
+	echo "replacing \"$1\" with \"$2\" in $dest"
+	gfind "$dest" ! -path '*/\.*' -type f -print0 | xargs -0 gsed -i "s|$1|$2|g"
 }
 
 # show permissions in octal
@@ -64,4 +88,12 @@ perm () {
 sketchup () {
 	export WINEPREFIX="${HOME}/.sketchup"
 	wine .sketchup/drive_c/Program\ Files/SketchUp/SketchUp\ 2015/SketchUp.exe
+}
+
+uuidme () {
+	uuidgen | tr '[:upper:]' '[:lower:]'
+}
+
+inv () {
+	invoker reload $(basename $(pwd))
 }
